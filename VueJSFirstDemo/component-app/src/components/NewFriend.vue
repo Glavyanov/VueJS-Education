@@ -35,7 +35,7 @@ export default {
       console.log(this.$refs.nameInput);
 
       this.$emit("add-contact",
-        this.nameInput,
+        /* this.nameInput, */
         this.enteredName,
         this.enteredPhone,
         this.enteredEmail);
