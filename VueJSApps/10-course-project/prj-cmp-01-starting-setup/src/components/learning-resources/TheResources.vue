@@ -78,9 +78,7 @@ export default {
       this.selectedTab = 'stored-resources';
     },
     removeResource(resId) {
-      const resourceToRemove = this.storedResources.indexOf(
-        (r) => r.id !== resId
-      );
+      const resourceToRemove = this.storedResources.findIndex(x => x.id === resId);
       this.storedResources.splice(resourceToRemove, 1);
     },
     alertResource() {
