@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useToast } from "primevue/usetoast";
 
-const text = ref();
+const text = ref("");
 const autoCom = ref("");
 
 const toast = useToast();

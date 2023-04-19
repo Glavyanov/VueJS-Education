@@ -21,32 +21,14 @@
 </template>
 
 <script>
+import { useFriendStore } from './stores/friendStore';
+import { storeToRefs } from 'pinia';
+
 export default {
   data() {
+    const {friends} = storeToRefs(useFriendStore());
     return {
-      friends: [
-        {
-          id: "manuel",
-          name: "Manuel Lorem",
-          phone: "888877777",
-          email: "manuel@mail.com",
-          favourite: false,
-        },
-        {
-          id: "johndoe",
-          name: "John Doe",
-          phone: "9999977777",
-          email: "johndoe@mail.com",
-          favourite: false,
-        },
-        {
-          id: "janedoe",
-          name: "Jane Doe",
-          phone: "6666677777",
-          email: "janedoe@mail.com",
-          favourite: false,
-        },
-      ],
+      friends
     };
   },
   methods: {
