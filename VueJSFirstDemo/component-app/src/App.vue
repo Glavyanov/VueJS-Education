@@ -6,9 +6,9 @@
     <new-friend @add-contact="addContact"></new-friend>
     <ul>
       <friend-contact
-        v-for="friend in friends"
-        :key="friend.id"
-        :id="friend.id"
+        v-for="{id, ...friend}, idx in friends"
+        :key="id + idx"
+        :id="id"
         :name="friend.name"
         :phone-number="friend.phone"
         :email-address="friend.email"
