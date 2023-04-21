@@ -1,17 +1,24 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link>
-    <router-link to="/about">About</router-link>
-    <router-link to="/brazil">Brazil</router-link>
-    <router-link to="/hawaii">Hawaii</router-link>
-    <router-link to="/jamaica">Jamaica</router-link>
-    <router-link to="/panama">Panama</router-link>
+    <router-link id="logo" to="/">Vue School Travel</router-link>
+    <router-link
+      v-for="destination in destinations"
+      :key="destination.id"
+      :to="{ name: 'destination.show', params: { id: destination.id } }"
+    >
+      {{ destination.name }}
+    </router-link>
   </div>
 </template>
 
+<script setup>
+import sourceData from "@/data.json";
+const destinations = sourceData.destinations;
+</script>
+
 <style scoped>
 #nav .vue-school-active-link {
-  color: red;
-  border-bottom: 2px solid red;
+  color: rgb(78, 162, 196);
+  border-bottom: 2px solid rgb(78, 162, 196);
 }
 </style>

@@ -8,6 +8,7 @@
         :to="{ name: 'destination.show', params: { id: destination.id } }"
       >
         {{ destination.name }}
+        <div id="divider"></div>
         <img :src="`/images/${destination.image}`" :alt="destination.name" />
       </router-link>
     </div>
