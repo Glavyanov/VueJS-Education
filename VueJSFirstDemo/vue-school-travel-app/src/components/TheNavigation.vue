@@ -8,3 +8,10 @@
     <router-link to="/panama">Panama</router-link>
   </div>
 </template>
+
+<style scoped>
+#nav .vue-school-active-link {
+  color: red;
+  border-bottom: 2px solid red;
+}
+</style>
