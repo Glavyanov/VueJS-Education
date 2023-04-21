@@ -9,7 +9,7 @@ const routes = [
   },
 
   {
-    path: "/destination/:id",
+    path: "/destination/:id/:slug",
     name: "destination.show",
     component: () =>
       import(/* webpackChunkName: "panama" */ "../views/DestinationShow.vue"),
