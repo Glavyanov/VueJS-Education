@@ -38,7 +38,7 @@
   <button @click="addEmail">Add Email</button>
   <p v-if="!emails.length">No emails here</p>
   <ul>
-    <li v-for="e, idx in emails" :key="e + idx">
+    <li v-for="(e, idx) in emails" @click="updateEmails(idx)" :key="e + idx">
       {{ e }}
     </li>
   </ul>
@@ -60,15 +60,22 @@ const email = customRef((track, trigger) => {
       if (isEmail(input)) {
         value = input;
         trigger();
-      }else{
-        alert("Insert valid content!")
+      } else {
+        alert("Insert valid content!");
       }
     },
   };
 });
-function addEmail(){
+function addEmail() {
   emails.value.push(email.value);
-  email.value="Add valid @mail";
+  email.value = "Add valid @mail";
+}
+
+function updateEmails(idx) {
+  const choice = confirm("Are you sure to want delete this email");
+  if (choice && emails.value.length) {
+    emails.value = emails.value.filter((_, i) => idx !== i);
+  }
 }
 
 const header = ref("Shopping List App");
