@@ -34,10 +34,49 @@
     </li>
   </ul>
   <p v-if="!items.length">Nothing to see here</p>
+  <input v-model.lazy="email" type="text" placeholder="Add a email" />
+  <button @click="addEmail">Add Email</button>
+  <p v-if="!emails.length">No emails here</p>
+  <ul>
+    <li v-for="(e, idx) in emails" @click="updateEmails(idx)" :key="e + idx">
+      {{ e }}
+    </li>
+  </ul>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, customRef } from "vue";
+
+const isEmail = (input) => input.includes("@");
+const emails = ref([]);
+const email = customRef((track, trigger) => {
+  let value = "Add valid @mail";
+  return {
+    get() {
+      track();
+      return value;
+    },
+    set(input) {
+      if (isEmail(input)) {
+        value = input;
+        trigger();
+      } else {
+        alert("Insert valid content!");
+      }
+    },
+  };
+});
+function addEmail() {
+  emails.value.push(email.value);
+  email.value = "Add valid @mail";
+}
+
+function updateEmails(idx) {
+  const choice = confirm("Are you sure to want delete this email");
+  if (choice && emails.value.length) {
+    emails.value = emails.value.filter((_, i) => idx !== i);
+  }
+}
 
 const header = ref("Shopping List App");
 const characterCount = computed(() => {
