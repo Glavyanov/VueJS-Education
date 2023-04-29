@@ -33,7 +33,7 @@ export default {
       const selectedTeam = this.teams.find((t) => t.id === teamId);
       const members = selectedTeam?.members;
       if(!members){
-        this.$router.push('/:notFound');
+        this.$router.push('/not-found');
         return;
       }
       const selectedMembers = [];
