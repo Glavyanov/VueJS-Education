@@ -9,12 +9,15 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useRoute } from "vue-router";
+import { computed, defineProps } from "vue";
 import sourceData from "@/data.json";
-const route = useRoute();
-const destinationId = computed(() => parseInt(route.params.id));
+const props = defineProps({
+  id: {
+    type: Number,
+    required: true,
+  },
+});
 const destination = computed(() =>
-  sourceData.destinations.find((des) => des.id === destinationId.value)
+  sourceData.destinations.find((des) => des.id === props.id)
 );
 </script>

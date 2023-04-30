@@ -1,24 +1,41 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import NotFound from "../components/NotFound.vue";
+import sourceData from "@/data.json";
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
+    component: import(
+      /* webpackChunkName: "home-view" */ "@/views/HomeView.vue"
+    ),
   },
 
   {
     path: "/destination/:id/:slug",
     name: "destination.show",
     component: () =>
-      import(/* webpackChunkName: "panama" */ "../views/DestinationShow.vue"),
+      import(
+        /* webpackChunkName: "destination-show" */ "@/views/DestinationShow.vue"
+      ),
+    props: (route) => ({ id: parseInt(route.params.id) }),
+    beforeEnter(to) {
+      const exist = sourceData.destinations.find(
+        (dest) => dest.id === parseInt(to.params.id)
+      );
+
+      if (!exist)
+        return {
+          name: "not-found",
+          query: { url: to.path },
+          hash: to.hash,
+        };
+    },
   },
 
   {
+    name: "not-found",
     path: "/:notFound(.*)*",
-    component: NotFound,
+    component: () => import("@/components/NotFound.vue"),
   },
 ];
 
