@@ -5,9 +5,8 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: import(
-      /* webpackChunkName: "home-view" */ "@/views/HomeView.vue"
-    ),
+    component: () =>
+      import(/* webpackChunkName: "home-view" */ "@/views/HomeView.vue"),
   },
 
   {
@@ -17,7 +16,7 @@ const routes = [
       import(
         /* webpackChunkName: "destination-show" */ "@/views/DestinationShow.vue"
       ),
-    props: (route) => ({ id: parseInt(route.params.id) }),
+    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
     beforeEnter(to) {
       const exist = sourceData.destinations.find(
         (dest) => dest.id === parseInt(to.params.id)
@@ -30,6 +29,16 @@ const routes = [
           hash: to.hash,
         };
     },
+  },
+
+  {
+    path: "/destination/:id/:slug/:experienceSlug",
+    name: "experience.show",
+    component: () =>
+      import(
+        /* webpackChunkName: "experience-show" */ "@/views/ExperienceShow.vue"
+      ),
+    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
   },
 
   {
