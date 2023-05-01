@@ -29,16 +29,17 @@ const routes = [
           hash: to.hash,
         };
     },
-  },
-
-  {
-    path: "/destination/:id/:slug/:experienceSlug",
-    name: "experience.show",
-    component: () =>
-      import(
-        /* webpackChunkName: "experience-show" */ "@/views/ExperienceShow.vue"
-      ),
-    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
+    children: [
+      {
+        path: "/destination/:id/:slug/:experienceSlug",
+        name: "experience.show",
+        component: () =>
+          import(
+            /* webpackChunkName: "experience-show" */ "@/views/ExperienceShow.vue"
+          ),
+        props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
+      },
+    ],
   },
 
   {
