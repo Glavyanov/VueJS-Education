@@ -1,6 +1,7 @@
 <template>
   <section>
     <h2>{{ experience.name }}</h2>
+    <GoBack />
     <img :src="`/images/${experience.image}`" :alt="experience.name" />
     <p>{{ experience.description }}</p>
   </section>
@@ -8,6 +9,7 @@
 <script setup>
 import sourceData from "@/data.json";
 import { computed, defineProps } from "vue";
+import GoBack from "@/components/GoBack.vue";
 const props = defineProps({
   id: {
     type: Number,
