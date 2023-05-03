@@ -53,6 +53,12 @@ const routes = [
               hash: to.hash,
             };
         },
+        children: [
+          {
+            path: ":notFound(.*)*",
+            name: "not-found",
+          },
+        ],
       },
     ],
   },
