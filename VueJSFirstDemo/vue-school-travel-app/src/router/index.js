@@ -19,7 +19,8 @@ const routes = [
     props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
     beforeEnter(to) {
       const exist = sourceData.destinations.find(
-        (dest) => dest.id === parseInt(to.params.id)
+        (dest) =>
+          dest.id === parseInt(to.params.id) && dest.slug === to.params.slug
       );
 
       if (!exist)
@@ -38,6 +39,20 @@ const routes = [
             /* webpackChunkName: "experience-show" */ "@/views/ExperienceShow.vue"
           ),
         props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
+        beforeEnter(to) {
+          const exist = sourceData.destinations.find(
+            (dest) =>
+              dest.id === parseInt(to.params.id) &&
+              dest.experiences.some((d) => d.slug === to.params.experienceSlug)
+          );
+
+          if (!exist)
+            return {
+              name: "not-found",
+              query: { url: to.path },
+              hash: to.hash,
+            };
+        },
       },
     ],
   },
