@@ -41,6 +41,8 @@ const isDark = ref(false);
 
 const toast = useToast();
 const items = ref([]);
+const dateTest = new Date("1970-01-14T14:35:14.200Z");
+const refDate = ref(dateTest);
 
 const greet = () => {
   toast.add({
@@ -58,6 +60,7 @@ const search = (event) => {
 };
 
 watch(isDark, () => {
+  refDate.value = new Date(Date.parse(refDate.value));
   if (isDark.value) {
     PrimeVue.changeTheme(
       "lara-light-purple",
@@ -74,6 +77,19 @@ watch(isDark, () => {
     );
   }
 });
+
+watch(
+  () => refDate.value,
+  (val) => {
+    const dateParsed = new Date(Date.parse(val));
+    console.log(dateParsed);
+    if (dateParsed.toISOString() === new Date(val).toISOString()) {
+      confirm(val);
+    } else {
+      alert("Validation failed");
+    }
+  }
+);
 </script>
 
 <style>
