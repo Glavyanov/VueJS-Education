@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, watchEffect } from "vue";
 import { useToast } from "primevue/usetoast";
 import { usePrimeVue } from "primevue/config";
 
@@ -41,7 +41,7 @@ const isDark = ref(false);
 
 const toast = useToast();
 const items = ref([]);
-const dateTest = new Date("1970-01-14T14:35:14.200Z");
+const dateTest = new Date("1970-01-14T14:35:14.200Z").toISOString();
 const refDate = ref(dateTest);
 
 const greet = () => {
@@ -60,7 +60,10 @@ const search = (event) => {
 };
 
 watch(isDark, () => {
-  refDate.value = new Date(Date.parse(refDate.value));
+  refDate.value = new Date(refDate.value);
+  console.log(refDate.value);
+  refDate.value = new Date(refDate.value).toISOString();
+  console.log(refDate.value);
   if (isDark.value) {
     PrimeVue.changeTheme(
       "lara-light-purple",
@@ -78,13 +81,12 @@ watch(isDark, () => {
   }
 });
 
-watch(
-  () => refDate.value,
-  (val) => {
-    const dateParsed = new Date(Date.parse(val));
-    console.log(dateParsed);
-    if (dateParsed.toISOString() === new Date(val).toISOString()) {
-      confirm(val);
+watchEffect(() => {
+    const d = new Date(refDate.value);
+    console.log(refDate.value)
+  const check =  !Number.isNaN(d.valueOf()) && d.toISOString() === refDate.value;
+    if (check) {
+      confirm(refDate.value);
     } else {
       alert("Validation failed");
     }
