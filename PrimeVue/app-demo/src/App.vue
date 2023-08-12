@@ -34,7 +34,6 @@ const text = ref("");
 const autoCom = ref("");
 const textForArea = ref("");
 const isTyping = ref(false);
-
 const toast = useToast();
 const items = ref([]);
 
