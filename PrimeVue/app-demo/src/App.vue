@@ -1,5 +1,8 @@
 <template>
   <ToastBase></ToastBase>
+  <div class="card flex justify-content-center" style="width: 250px">
+        <PanelMenu :model="panelItems" class="w-full md:w-25rem" />
+  </div>
   <div class="container">
     <span class="p-float-label p-input-filled">
       <InputText id="txt" v-model="text" />
@@ -18,19 +21,20 @@
       :suggestions="items"
       @complete="search"
     ></AutoComplete>
-  </div>
-  <ButtonBase
+    <ButtonBase
     label="Change Theme"
     @click="isDark = !isDark"
     :icon="icon"
     style="margin-left: 20px; height: 50px"
   ></ButtonBase>
+  </div>
 </template>
 
 <script setup>
 import { ref, watch } from "vue";
 import { useToast } from "primevue/usetoast";
 import { usePrimeVue } from "primevue/config";
+import PanelMenu from 'primevue/panelmenu';
 
 const PrimeVue = usePrimeVue();
 
@@ -74,6 +78,126 @@ watch(isDark, () => {
     );
   }
 });
+
+const panelItems = ref([
+    {
+        label: 'File',
+        icon: 'pi pi-fw pi-file',
+        items: [
+            {
+                label: 'New',
+                icon: 'pi pi-fw pi-plus',
+                items: [
+                    {
+                        label: 'Redirect',
+                        icon: 'pi pi-fw pi-external-link',
+                        url: 'https://primevue.org/panelmenu',
+                        target: '_blank'
+                    },
+                    {
+                        label: 'Video',
+                        icon: 'pi pi-fw pi-video'
+                    }
+                ]
+            },
+            {
+                label: 'Delete',
+                icon: 'pi pi-fw pi-trash'
+            },
+            {
+                label: 'Redirect',
+                icon: 'pi pi-fw pi-external-link',
+                url: 'https://primevue.org/panelmenu',
+                target: '_blank'
+            }
+        ]
+    },
+    {
+        label: 'Edit',
+        icon: 'pi pi-fw pi-pencil',
+        items: [
+            {
+                label: 'Left',
+                icon: 'pi pi-fw pi-align-left'
+            },
+            {
+                label: 'Right',
+                icon: 'pi pi-fw pi-align-right'
+            },
+            {
+                label: 'Center',
+                icon: 'pi pi-fw pi-align-center'
+            },
+            {
+                label: 'Justify',
+                icon: 'pi pi-fw pi-align-justify'
+            }
+        ]
+    },
+    {
+        label: 'Users',
+        icon: 'pi pi-fw pi-user',
+        items: [
+            {
+                label: 'New',
+                icon: 'pi pi-fw pi-user-plus'
+            },
+            {
+                label: 'Delete',
+                icon: 'pi pi-fw pi-user-minus'
+            },
+            {
+                label: 'Search',
+                icon: 'pi pi-fw pi-users',
+                items: [
+                    {
+                        label: 'Filter',
+                        icon: 'pi pi-fw pi-filter',
+                        items: [
+                            {
+                                label: 'Print',
+                                icon: 'pi pi-fw pi-print'
+                            }
+                        ]
+                    },
+                    {
+                        icon: 'pi pi-fw pi-bars',
+                        label: 'List'
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        label: 'Events',
+        icon: 'pi pi-fw pi-calendar',
+        items: [
+            {
+                label: 'Edit',
+                icon: 'pi pi-fw pi-pencil',
+                items: [
+                    {
+                        label: 'Save',
+                        icon: 'pi pi-fw pi-calendar-plus'
+                    },
+                    {
+                        label: 'Delete',
+                        icon: 'pi pi-fw pi-calendar-minus'
+                    }
+                ]
+            },
+            {
+                label: 'Archieve',
+                icon: 'pi pi-fw pi-calendar-times',
+                items: [
+                    {
+                        label: 'Remove',
+                        icon: 'pi pi-fw pi-calendar-minus'
+                    }
+                ]
+            }
+        ]
+    }]);
 </script>
 
 <style>
