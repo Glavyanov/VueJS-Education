@@ -55,9 +55,9 @@ router.beforeEach(function (_A, _B, next) {
   console.log('Global beforeEach');
   /* console.log(to, from); */
   /* console.log(to.params.teamId); */
-  next();
+  next(); /* also confirm it!!! */
 
-  /* next(true);*/ /* also confirm it!!! */
+  /* next(true);*/
   /* if (to.meta.needAuth) {
     next();
   } else {
