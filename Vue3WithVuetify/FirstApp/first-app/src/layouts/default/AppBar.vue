@@ -5,25 +5,59 @@
     <v-app-bar-title>
         <h1 style="display: inline-block;">{{ header }}</h1>
     </v-app-bar-title>
-    <v-dialog>
+    <v-dialog width="800">
       <template v-slot:activator="{ props}">
         <v-btn icon v-bind="props">
-          <v-icon class="mr-1" icon="mdi-account" size="x-large"/>
+          <v-icon class="mr-1" icon="mdi-account-circle-outline" size="x-large"/>
         </v-btn>
       </template>
-      <v-card>
+      <v-card width="800">
         <v-card-title><span>Account Title</span></v-card-title>
         <v-card-subtitle><span>Account subtitle secondary text</span></v-card-subtitle>
-        <v-card-text><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti dolorum dolorem voluptatum? Consequuntur dolores consequatur nihil, tempora natus dicta voluptatibus laboriosam velit facilis pariatur, labore aliquam cum dolore voluptate magni.
-        Nesciunt blanditiis laboriosam necessitatibus nam voluptatum! Alias quaerat repellendus ducimus velit similique nobis magnam ad temporibus voluptatum, voluptates quae impedit molestiae quisquam. Laborum est saepe amet ab quas aliquid odit!</p></v-card-text>
+          <v-card-text>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti dolorum dolorem voluptatum? Consequuntur dolores consequatur nihil, tempora natus dicta voluptatibus laboriosam velit facilis pariatur, labore aliquam cum dolore voluptate magni.
+              Nesciunt blanditiis laboriosam necessitatibus nam voluptatum! Alias quaerat repellendus ducimus velit similique nobis magnam ad temporibus voluptatum, voluptates quae impedit molestiae quisquam. Laborum est saepe amet ab quas aliquid odit!
+            </p>
+          </v-card-text>
         <v-card-actions>
           <v-btn icon >
             <v-icon class="mr-1" icon="mdi-alert-outline" size="x-large"/>
           </v-btn>
-          <v-btn >
-            <v-icon class="mr-1" icon="mdi-alert-plus" size="x-large"/>
+          <v-btn icon>
+            <v-icon class="mr-1" icon="mdi-alert-plus" size="x-large" />
+          </v-btn>
+          <v-btn
+            variant="text"
+            color="teal-accent-4"
+            @click="reveal = true"
+          >
+            Learn More
           </v-btn>
         </v-card-actions>
+        <v-expand-transition>
+          <v-card
+            v-if="reveal"
+            class="v-card--reveal"
+            style="height: 100%;"
+          >
+            <v-card-title><p> Origin</p></v-card-title>
+            <v-card-text>
+              <p>
+                late 16th century (as a noun denoting a place where alms were distributed): from medieval Latin eleemosynarius, from late Latin eleemosyna ‘alms’, from Greek eleēmosunē ‘compassion’ 
+                late 16th century (as a noun denoting a place where alms were distributed): from medieval Latin eleemosynarius, from late Latin eleemosyna ‘alms’, from Greek eleēmosunē ‘compassion’
+                late 16th century (as a noun denoting a place where alms were distributed): from medieval Latin eleemosynarius, from late Latin eleemosyna ‘alms’, from Greek eleēmosunē ‘compassion’
+              </p>
+            </v-card-text>
+            <v-card-actions class="pt-0">
+              <v-btn
+                variant="text"
+                @click="reveal = false"
+              >
+                Close
+              </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-expand-transition>
       </v-card>
     </v-dialog>
     <v-btn icon>
@@ -57,6 +91,7 @@
   import { ref } from 'vue';
   const header = ref("Vuetify App");
   const collapse = ref(false);
+  const reveal = ref(false);
   
   const tabs = ref([1, 2, 3, 4]);
 
