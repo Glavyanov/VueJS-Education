@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar rounded :elevation="16" :collapse="collapse" height="200" image="@/assets/logo.svg">
+  <v-app-bar rounded :elevation="16" :collapse="collapse" height="100" image="@/assets/logo.svg">
     <v-app-bar-nav-icon @click="collapse = !collapse" class="ml-4" size="x-large"></v-app-bar-nav-icon>
     <v-spacer></v-spacer>
     <v-app-bar-title>
@@ -71,6 +71,9 @@
     <v-btn icon class="ml-10">
       <v-icon>mdi-magnify</v-icon>
     </v-btn>
+    <v-btn icon>
+      <v-icon>mdi-calendar</v-icon>
+    </v-btn>
     <v-menu bottom left class="dialogTest" open-on-hover>
         <template v-slot:activator="{ ...test}">
           <v-btn icon v-bind="test.props">
@@ -121,6 +124,6 @@
   };
 
   const goTo = (tab) => {
-    tab === 1 ? router.push('/') : router.push('/about');
+    tab === 1 ? router.push({name: "Home"}) : router.push({name: "About"});
   }
 </script>
