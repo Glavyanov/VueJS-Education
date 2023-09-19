@@ -11,7 +11,7 @@
 
       <v-row class="d-flex align-center justify-center">
         <v-col cols="auto">
-          <v-icon icon="mdi-home" />
+          <v-icon icon="mdi-home"  />
         </v-col>
 
         <v-col cols="auto">

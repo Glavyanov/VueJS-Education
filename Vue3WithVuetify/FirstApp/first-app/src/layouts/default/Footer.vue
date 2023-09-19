@@ -1,6 +1,7 @@
 <template>
     <v-bottom-navigation
       app
+      grow
     >
       <v-btn
         value="music"
