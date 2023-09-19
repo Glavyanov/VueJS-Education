@@ -15,7 +15,11 @@
         </v-col>
 
         <v-col cols="auto">
-         
+          <v-row class="ma-2" justify="center">
+          <v-btn-toggle v-model="selectedLetters" multiple rounded  color="blue">
+            <v-btn v-for="(ch, index) in ['V','U','E','T','I','F','Y']" :key="index">{{ch}}</v-btn>
+          </v-btn-toggle>
+        </v-row>
         </v-col>
 
         <v-col cols="auto">
@@ -27,5 +31,6 @@
 </template>
 
 <script setup>
-  //
+  import { ref } from 'vue';
+  const selectedLetters = ref([]);
 </script>
