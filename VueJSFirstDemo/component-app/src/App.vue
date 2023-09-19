@@ -6,9 +6,9 @@
     <new-friend @add-contact="addContact"></new-friend>
     <ul>
       <friend-contact
-        v-for="{id, ...friend}, idx in friends"
-        :key="id + idx"
-        :id="id"
+        v-for="friend in friends"
+        :key="friend.id"
+        :id="friend.id"
         :name="friend.name"
         :phone-number="friend.phone"
         :email-address="friend.email"
@@ -21,14 +21,32 @@
 </template>
 
 <script>
-import { useFriendStore } from './stores/friendStore';
-import { storeToRefs } from 'pinia';
-
 export default {
   data() {
-    const {friends} = storeToRefs(useFriendStore());
     return {
-      friends
+      friends: [
+        {
+          id: "manuel",
+          name: "Manuel Lorem",
+          phone: "888877777",
+          email: "manuel@mail.com",
+          favourite: false,
+        },
+        {
+          id: "johndoe",
+          name: "John Doe",
+          phone: "9999977777",
+          email: "johndoe@mail.com",
+          favourite: false,
+        },
+        {
+          id: "janedoe",
+          name: "Jane Doe",
+          phone: "6666677777",
+          email: "janedoe@mail.com",
+          favourite: false,
+        },
+      ],
     };
   },
   methods: {
