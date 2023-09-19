@@ -1,8 +1,47 @@
 <template>
   <v-container class="fill-height">
     <v-responsive class="align-center text-center fill-height">
-      <v-img height="300" src="@/assets/logo.svg" id="activateOverlay"/>
+      <v-row class="d-flex justify-start">
+        <v-img height="300" src="@/assets/logo.svg" id="activateOverlay"/>
+        <v-hover v-slot="{ isHovering, props }">
+          <v-card
+            class="mx-auto"
+            max-width="344"
+            v-bind="props"
+          >
+            <v-img src="https://cdn.vuetifyjs.com/images/cards/forest-art.jpg"></v-img>
 
+            <v-card-text>
+              <h2 class="text-h6 text-primary">
+                Magento Forests
+              </h2>
+              Travel to the best outdoor experience on planet Earth. A vacation you will never forget!
+            </v-card-text>
+
+            <v-card-title>
+              <v-rating
+                :model-value="2"
+                dense
+                color="orange"
+                background-color="orange"
+                hover
+                class="me-2"
+              ></v-rating>
+              <span class="text-primary text-subtitle-2">64 Reviews</span>
+            </v-card-title>
+
+            <v-overlay
+              :model-value="isHovering"
+              contained
+              scrim="#036358"
+              class="align-center justify-center"
+            >
+              <v-btn variant="flat">See more info</v-btn>
+            </v-overlay>
+          </v-card>
+        </v-hover>
+      </v-row>
+      
       <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
 
       <h1 class="text-h2 font-weight-bold" >Vuetify</h1>
