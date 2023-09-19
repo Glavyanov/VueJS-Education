@@ -8,7 +8,14 @@
     <v-dialog width="800">
       <template v-slot:activator="{ props}">
         <v-btn icon v-bind="props">
-          <v-icon class="mr-1" icon="mdi-account-circle-outline" size="x-large"/>
+          <v-chip
+            class="ma-2"
+            color="primary"
+            label
+          >
+            <v-icon class="mr-1" icon="mdi-account-circle-outline" size="x-large"/>
+            John Doe
+          </v-chip>
         </v-btn>
       </template>
       <v-card width="800">
@@ -60,7 +67,7 @@
     </v-expand-transition>
       </v-card>
     </v-dialog>
-    <v-btn icon>
+    <v-btn icon class="ml-10">
       <v-icon>mdi-magnify</v-icon>
     </v-btn>
     <v-menu bottom left class="dialogTest">
