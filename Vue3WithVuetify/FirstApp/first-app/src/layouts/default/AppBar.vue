@@ -88,7 +88,15 @@
     </v-menu>
     <template v-slot:extension>
       <v-tabs align-with-title>
-        <v-tab v-for="tab in tabs" :key="tab">Tab {{ tab }}</v-tab>
+        <v-tab v-for="tab in tabs" :key="tab">
+          <v-btn v-if="tab === 1" @click="goTo(tab)">
+              Home
+          </v-btn>
+          <v-btn v-else-if="tab === 2" @click="goTo(tab)">
+            About
+          </v-btn>
+          <span v-else>Tab {{ tab }}</span>
+        </v-tab>
       </v-tabs>
     </template>
   </v-app-bar>
@@ -97,10 +105,11 @@
 <script setup>
   //
   import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
   const header = ref("Vuetify App");
   const collapse = ref(false);
   const reveal = ref(false);
-  
+  const router = useRouter();
   const tabs = ref([1, 2, 3, 4]);
 
   const addTab = (e) => {
@@ -110,4 +119,8 @@
   const getAttrs = (attrs) =>{
     console.log(attrs);
   };
+
+  const goTo = (tab) => {
+    tab === 1 ? router.push('/') : router.push('/about');
+  }
 </script>
