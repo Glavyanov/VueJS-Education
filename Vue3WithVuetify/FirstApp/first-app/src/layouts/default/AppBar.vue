@@ -5,7 +5,7 @@
     <v-app-bar-title>
         <h1 style="display: inline-block;">{{ header }}</h1>
     </v-app-bar-title>
-    <v-dialog width="800">
+    <v-dialog width="800" transition="dialog-top-transition">
       <template v-slot:activator="{ props}">
         <v-btn icon v-bind="props" v-if="!collapse">
           <v-chip
@@ -25,8 +25,9 @@
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti dolorum dolorem voluptatum? Consequuntur dolores consequatur nihil, tempora natus dicta voluptatibus laboriosam velit facilis pariatur, labore aliquam cum dolore voluptate magni.
               Nesciunt blanditiis laboriosam necessitatibus nam voluptatum! Alias quaerat repellendus ducimus velit similique nobis magnam ad temporibus voluptatum, voluptates quae impedit molestiae quisquam. Laborum est saepe amet ab quas aliquid odit!
             </p>
+            <div class="text-h2 pa-12">text</div>
           </v-card-text>
-        <v-card-actions>
+        <v-card-actions class="justify-end">
           <v-btn icon >
             <v-icon class="mr-1" icon="mdi-alert-outline" size="x-large"/>
           </v-btn>
@@ -36,7 +37,7 @@
           <v-btn
             variant="text"
             color="teal-accent-4"
-            @click="reveal = true"
+            @click="reveal = !reveal"
           >
             Learn More
           </v-btn>
@@ -70,7 +71,7 @@
     <v-btn icon class="ml-10">
       <v-icon>mdi-magnify</v-icon>
     </v-btn>
-    <v-menu bottom left class="dialogTest">
+    <v-menu bottom left class="dialogTest" open-on-hover>
         <template v-slot:activator="{ ...test}">
           <v-btn icon v-bind="test.props">
             <v-icon>mdi-dots-vertical</v-icon>
