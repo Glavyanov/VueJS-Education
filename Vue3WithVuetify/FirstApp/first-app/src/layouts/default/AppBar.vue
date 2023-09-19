@@ -1,13 +1,13 @@
 <template>
-  <v-app-bar rounded :elevation="16" :collapse="collapse" height="200" image="@/assets/logo.svg" elevate-on-scroll>
-    <v-app-bar-nav-icon @click="collapse = !collapse" class="ml-4"></v-app-bar-nav-icon>
+  <v-app-bar rounded :elevation="16" :collapse="collapse" height="200" image="@/assets/logo.svg">
+    <v-app-bar-nav-icon @click="collapse = !collapse" class="ml-4" size="x-large"></v-app-bar-nav-icon>
     <v-spacer></v-spacer>
     <v-app-bar-title>
         <h1 style="display: inline-block;">{{ header }}</h1>
     </v-app-bar-title>
     <v-dialog width="800">
       <template v-slot:activator="{ props}">
-        <v-btn icon v-bind="props">
+        <v-btn icon v-bind="props" v-if="!collapse">
           <v-chip
             class="ma-2"
             color="primary"
