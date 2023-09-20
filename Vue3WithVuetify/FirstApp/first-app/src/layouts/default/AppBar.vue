@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar rounded :elevation="16" :collapse="collapse" height="200" image="@/assets/logo.svg">
+  <v-app-bar rounded :elevation="16" :collapse="collapse" height="100" image="@/assets/logo.svg">
     <v-app-bar-nav-icon @click="collapse = !collapse" class="ml-4" size="x-large"></v-app-bar-nav-icon>
     <v-spacer></v-spacer>
     <v-app-bar-title>
@@ -71,6 +71,9 @@
     <v-btn icon class="ml-10">
       <v-icon>mdi-magnify</v-icon>
     </v-btn>
+    <v-btn icon>
+      <v-icon>mdi-calendar</v-icon>
+    </v-btn>
     <v-menu bottom left class="dialogTest" open-on-hover>
         <template v-slot:activator="{ ...test}">
           <v-btn icon v-bind="test.props">
@@ -88,7 +91,15 @@
     </v-menu>
     <template v-slot:extension>
       <v-tabs align-with-title>
-        <v-tab v-for="tab in tabs" :key="tab">Tab {{ tab }}</v-tab>
+        <v-tab v-for="tab in tabs" :key="tab">
+          <v-btn v-if="tab === 1" @click="goTo(tab)">
+              Home
+          </v-btn>
+          <v-btn v-else-if="tab === 2" @click="goTo(tab)">
+            About
+          </v-btn>
+          <span v-else>Tab {{ tab }}</span>
+        </v-tab>
       </v-tabs>
     </template>
   </v-app-bar>
@@ -97,10 +108,11 @@
 <script setup>
   //
   import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
   const header = ref("Vuetify App");
   const collapse = ref(false);
   const reveal = ref(false);
-  
+  const router = useRouter();
   const tabs = ref([1, 2, 3, 4]);
 
   const addTab = (e) => {
@@ -110,4 +122,8 @@
   const getAttrs = (attrs) =>{
     console.log(attrs);
   };
+
+  const goTo = (tab) => {
+    tab === 1 ? router.push({name: "Home"}) : router.push({name: "About"});
+  }
 </script>
