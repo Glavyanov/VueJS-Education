@@ -12,7 +12,7 @@
             <v-img src="https://cdn.vuetifyjs.com/images/cards/forest-art.jpg"></v-img>
 
             <v-card-text>
-              <h2 class="text-h6 text-primary">
+              <h2 class="text-h6 text-warning">
                 Magento Forests
               </h2>
               Travel to the best outdoor experience on planet Earth. A vacation you will never forget!
