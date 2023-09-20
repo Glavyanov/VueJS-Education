@@ -76,7 +76,7 @@
                 width="auto"
               >
                 <v-card>
-                  <v-card-text>
+                  <v-card-text class="bg-indigo-accent-2">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   </v-card-text>
                   <v-card-actions>

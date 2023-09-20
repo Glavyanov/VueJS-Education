@@ -63,9 +63,9 @@
               >
                 Close
               </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-expand-transition>
+            </v-card-actions>
+          </v-card>
+        </v-expand-transition>
       </v-card>
     </v-dialog>
     <v-btn icon class="ml-10">
