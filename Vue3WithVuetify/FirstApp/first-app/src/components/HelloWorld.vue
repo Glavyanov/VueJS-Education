@@ -58,7 +58,7 @@
         <v-col cols="auto">
           <v-row class="ma-2" justify="center">
           <v-btn-toggle v-model="selectedLetters" multiple rounded  color="blue">
-            <v-btn v-for="(ch, index) in ['V','U','E','T','I','F','Y']" :key="index">{{ch}}</v-btn>
+            <v-btn  class="text-teal-lighten-3" v-for="(ch, index) in ['V','U','E','T','I','F','Y']" :key="index">{{ch}}</v-btn>
           </v-btn-toggle>
         </v-row>
         </v-col>
@@ -67,6 +67,7 @@
           <div class="text-center">
             <v-btn
               color="primary"
+              class="hidden-md-and-up"
             >
               Open Dialog
 

@@ -1,6 +1,6 @@
 <template>
     <v-card
-      class="mx-auto"
+      class="mx-auto hidden-md-and-down"
       color="#26c6da"
       theme="dark"
       max-width="400"
