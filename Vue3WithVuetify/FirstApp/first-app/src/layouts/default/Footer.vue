@@ -2,6 +2,7 @@
     <v-bottom-navigation
       app
       grow
+      class="bg-grey-darken-2"
     >
       <v-btn
         value="music"

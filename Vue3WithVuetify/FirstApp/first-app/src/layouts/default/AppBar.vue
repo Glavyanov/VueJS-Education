@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar rounded :elevation="16" :collapse="collapse" height="100" image="@/assets/logo.svg">
+  <v-app-bar rounded :elevation="16" :collapse="collapse" height="100" image="@/assets/logo.svg" class="bg-grey-darken-2">
     <v-app-bar-nav-icon @click="collapse = !collapse" class="ml-4" size="x-large"></v-app-bar-nav-icon>
     <v-spacer></v-spacer>
     <v-app-bar-title>

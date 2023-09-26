@@ -39,7 +39,7 @@
         </v-list-item>
       </v-card-actions>
     </v-card>
-    <v-sheet>
+    <v-sheet class="bg-grey-darken-3">
       <v-container style="height: 100px"> </v-container>
     </v-sheet>
   </template>

@@ -48,7 +48,7 @@
 
       <div class="py-14" />
 
-      <v-row class="d-flex align-center justify-center">
+      <v-row class="d-flex  justify-center">
         <v-col cols="auto">
           <v-btn @click="overlay = !overlay" variant="plain" size="x-large">
             <v-icon icon="mdi-home"  size="x-large"/>
