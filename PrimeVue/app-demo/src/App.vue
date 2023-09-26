@@ -26,7 +26,16 @@
     @click="isDark = !isDark"
     :icon="icon"
     style="margin-left: 20px; height: 50px"
-  ></ButtonBase>
+    ></ButtonBase>
+    <ButtonBase
+      :label="store.name"
+      @click="store.increment"
+      icon="pi pi-home"
+      style="margin-left: 20px; height: 50px"
+    ></ButtonBase>
+    <span class="p-float-label p-input-filled" style="margin-left: 20px; margin-right: 20px;">
+      {{ store.count }}
+    </span>
   </div>
 </template>
 
@@ -35,6 +44,7 @@ import { ref, watch} from "vue";
 import { useToast } from "primevue/usetoast";
 import { usePrimeVue } from "primevue/config";
 import PanelMenu from 'primevue/panelmenu';
+import { useCounterStore } from './store/counterStore.js';
 
 const PrimeVue = usePrimeVue();
 
@@ -47,6 +57,7 @@ const toast = useToast();
 const items = ref([]);
 const dateTest = new Date("1970-01-14T14:35:14.200Z").toISOString();
 const refDate = ref(dateTest);
+const store = useCounterStore();
 
 const greet = () => {
   toast.add({
