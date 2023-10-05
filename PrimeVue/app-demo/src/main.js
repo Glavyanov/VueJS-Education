@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import { createPinia } from 'pinia';
+import { createPinia } from "pinia";
 import App from "./App.vue";
 import PrimeVue from "primevue/config";
 import InputText from "primevue/inputtext";
@@ -7,7 +7,7 @@ import Button from "primevue/button";
 import Toast from "primevue/toast";
 import ToastService from "primevue/toastservice";
 import AutoComplete from "primevue/autocomplete";
-import VueRouter from 'vue-router';
+import VueRouter from "@/router/index";
 
 import "./assets/app.css";
 import "primevue/resources/primevue.min.css";
