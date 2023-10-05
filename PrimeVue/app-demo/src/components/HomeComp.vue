@@ -36,6 +36,15 @@
       <span class="p-float-label p-input-filled" style="margin-left: 20px; margin-right: 20px;">
         {{ store.count }}
       </span>
+      <ButtonBase
+        label="Decrement"
+        @click="store.decrement"
+        icon="pi pi-sort-down"
+        style="margin-left: 20px; height: 50px"
+      ></ButtonBase>
+      <span style="margin-left: 20px; margin-right: 20px;">
+        {{ store.oddOrEven }}
+      </span>
     </div>
     
   </template>
@@ -50,9 +59,9 @@
   const PrimeVue = usePrimeVue();
   
   const text = ref();
-  const icon = ref("pi pi-moon");
+  const icon = ref("pi pi-sun");
   const autoCom = ref("");
-  const isDark = ref(false);
+  const isDark = ref(true);
   
   const toast = useToast();
   const items = ref([]);
