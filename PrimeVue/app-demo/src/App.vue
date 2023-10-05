@@ -30,7 +30,7 @@
     <ButtonBase
       :label="store.name"
       @click="store.increment"
-      icon="pi pi-home"
+      icon="pi pi-sort-up"
       style="margin-left: 20px; height: 50px"
     ></ButtonBase>
     <span class="p-float-label p-input-filled" style="margin-left: 20px; margin-right: 20px;">

@@ -7,6 +7,7 @@ import Button from "primevue/button";
 import Toast from "primevue/toast";
 import ToastService from "primevue/toastservice";
 import AutoComplete from "primevue/autocomplete";
+import VueRouter from 'vue-router';
 
 import "./assets/app.css";
 import "primevue/resources/primevue.min.css";
@@ -15,6 +16,7 @@ import "primeicons/primeicons.css";
 const app = createApp(App);
 const pinia = createPinia();
 
+app.use(VueRouter);
 app.use(PrimeVue);
 app.use(ToastService);
 app.use(pinia);

@@ -3,7 +3,7 @@ import { ref, computed} from 'vue';
 
 export const useCounterStore = defineStore('counter', () => {
     const count = ref(10);
-    const name = ref('Home');
+    const name = ref('Increase');
     const doubleCount = computed(() => count.value * 2);
     function increment() {
       count.value++
