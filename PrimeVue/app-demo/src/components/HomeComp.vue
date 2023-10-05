@@ -42,7 +42,8 @@
         icon="pi pi-sort-down"
         style="margin-left: 20px; height: 50px"
       ></ButtonBase>
-      <span style="margin-left: 20px; margin-right: 20px;">
+      <span style="margin-left: 20px; margin-right: 20px;" :style="store.oddOrEven === 'even' && { 'color': 'red' }">
+        This counter is 
         {{ store.oddOrEven }}
       </span>
     </div>
@@ -106,13 +107,4 @@
     }
   });
   </script>
-  
-  <style scoped>
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  </style>
   

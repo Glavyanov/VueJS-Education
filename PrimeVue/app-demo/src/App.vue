@@ -138,6 +138,11 @@ const panelItems = ref([
     icon: "pi pi-fw pi-file",
     to: "/about",
   },
+  {
+    label: "Tasks",
+    icon: "pi pi-fw pi-file",
+    to: "/tasks",
+  },
 ]);
 </script>
 
@@ -146,6 +151,6 @@ const panelItems = ref([
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 50vh;
 }
 </style>

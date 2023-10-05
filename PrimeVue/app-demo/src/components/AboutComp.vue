@@ -1,14 +1,26 @@
 <template>
   <div class="container">
-    <h1>About</h1>
+    <ButtonBase
+    :label="(store.count).toString()"
+    @click="store.doubleCount"
+    style="margin-left: 20px; height: 50px"
+    ></ButtonBase>
+    <h1 id="about">About</h1>
   </div>
 </template>
 
+<script setup>
+import { useCounterStore } from "@/store/counterStore";
+const store = useCounterStore();
+
+</script>
+
 <style scoped>
 .container {
-  display: flex;
-  place-items: center;
-  min-height: 100vh;
   color: rgb(120, 120, 150);
+}
+
+#about{
+  transform: rotate(30deg);
 }
 </style>
