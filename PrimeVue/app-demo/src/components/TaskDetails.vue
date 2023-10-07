@@ -1,8 +1,12 @@
 <template>
   <Card style="width: 400px">
     <template #header>
+      <img alt="N/A" :src="task.pic" />
     </template>
-    <template #title>{{ task.title }}</template>
+    <template #title>
+      {{ task.title }}
+      <Badge :value="store.count"></Badge>
+    </template>
     <template #subtitle> Card subtitle </template>
     <template #content>
       <p>
@@ -19,6 +23,7 @@
         label="Cancel"
         severity="secondary"
         style="margin-left: 0.5em"
+        @click="goToHome"
       />
       <span style="margin-left: 25px">
         <i class="pi pi-fw pi-trash"></i>
@@ -31,9 +36,22 @@
 
 <script setup>
 import { defineProps } from "vue";
+import { useRouter } from "vue-router";
 import Card from "primevue/card";
+import Badge from "primevue/badge";
+import { useCounterStore } from "@/store/counterStore";
 
 defineProps({
-  task: Object,
+  task: {
+    type: Object,
+    required: true,
+  },
 });
+
+const router = useRouter();
+const store = useCounterStore();
+
+const goToHome = () => {
+  router.push({ name: "home" });
+};
 </script>
