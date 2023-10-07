@@ -11,9 +11,6 @@
     <template #content>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
-        consequuntur error repudiandae numquam deserunt quisquam repellat libero
-        asperiores earum nam nobis, culpa ratione quam perferendis esse,
-        cupiditate neque quas!
       </p>
     </template>
     <template #footer>
@@ -27,8 +24,8 @@
       />
       <span style="margin-left: 25px">
         <i class="pi pi-fw pi-trash"></i>
-        <i class="pi pi-spin pi-spinner" />
-        <i class="pi pi-spin pi-cog" />
+        <i class="pi pi-spin pi-spinner"></i>
+        <i class="pi pi-spin pi-cog"></i>
       </span>
     </template>
   </Card>

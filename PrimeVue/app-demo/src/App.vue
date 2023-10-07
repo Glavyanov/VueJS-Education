@@ -1,5 +1,5 @@
 <template>
-  <div class="card flex justify-content-center" style="width: 250px">
+  <div style="width: 250px">
     <PanelMenu :model="panelItems" class="w-full md:w-25rem" />
   </div>
   <RouterView />

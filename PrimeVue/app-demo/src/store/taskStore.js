@@ -2,14 +2,13 @@ import { defineStore } from "pinia";
 import { ref } from 'vue';
 
 export const useTaskStore = defineStore('taskStore', () => {
-
-    const tasks = ref([
-        {id: 1, title: "buy some apple...", isFav: false, pic: "/pic/apple.png"},
-        {id: 2, title: "buy that pinia...", isFav: true, pic: "/pic/pinia.png"},
-    ]);
-
+    const getTasks = async() => (await import("@/assets/data/products.json")).default;
     const name = ref("TestTasks");
-
+    const tasks = ref([]);
+    getTasks().then(res => res.products)
+              .then(data => tasks.value = data)
+              .catch(err => console.log(err));
+              
     return {
         tasks,
         name
