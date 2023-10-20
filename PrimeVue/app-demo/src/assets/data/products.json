@@ -1,7 +1,20 @@
-{
-    "products": [
-        {"id": 1, "title": "buy some apple...", "isFav": false, "pic": "/pic/apple.png"},
-        {"id": 2, "title": "buy that pinia...", "isFav": true, "pic": "/pic/pinia.png"},
-        {"id": 2, "title": "buy that pinia...", "isFav": true, "pic": "/pic/pinia.png"}
-    ]
-}
+[
+  {
+    "id": 1,
+    "title": "buy some apple...",
+    "isFav": false,
+    "pic": "/pic/apple.png"
+  },
+  {
+    "id": 2,
+    "title": "buy that pinia...",
+    "isFav": true,
+    "pic": "/pic/pinia.png"
+  },
+  {
+    "id": 2,
+    "title": "buy that pinia...",
+    "isFav": true,
+    "pic": "/pic/pinia.png"
+  }
+]

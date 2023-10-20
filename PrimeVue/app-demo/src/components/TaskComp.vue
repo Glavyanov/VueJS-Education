@@ -10,6 +10,7 @@ import { useTaskStore } from "@/store/taskStore";
 import TaskDetails from "./TaskDetails.vue";
 import { storeToRefs } from "pinia";
 
-const { tasks, name } = storeToRefs(useTaskStore());
+useTaskStore().getTasks();
+const { name, tasks } = storeToRefs(useTaskStore());
 
 </script>

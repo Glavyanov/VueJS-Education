@@ -34,7 +34,7 @@
         style="margin-left: 20px; height: 50px"
       ></ButtonBase>
       <span class="p-float-label p-input-filled" style="margin-left: 20px; margin-right: 20px;">
-        {{ store.count }}
+        {{ count }}
       </span>
       <ButtonBase
         label="Decrement"
@@ -42,16 +42,16 @@
         icon="pi pi-sort-down"
         style="margin-left: 20px; height: 50px"
       ></ButtonBase>
-      <span style="margin-left: 20px; margin-right: 20px;" :style="store.oddOrEven === 'even' && { 'color': 'red' }">
-        This counter is 
-        {{ store.oddOrEven }}
+      <span style="margin-left: 20px; margin-right: 20px;" :style="oddOrEven === 'even' && { 'color': 'red' }">
+        The counter is 
+        {{ oddOrEven }}
       </span>
     </div>
     
   </template>
   
   <script setup>
-  import { ref, watch} from "vue";
+  import { ref, watch, computed} from "vue";
   import { useToast } from "primevue/usetoast";
   import { usePrimeVue } from "primevue/config";
   import PanelMenu from 'primevue/panelmenu';
@@ -70,6 +70,8 @@
   const dateTest = new Date("1970-01-14T14:35:14.200Z").toISOString();
   const refDate = ref(dateTest);
   const store = useCounterStore();
+  const oddOrEven = computed(() => store.oddOrEven);
+  const count = computed(() => store.count);
   
   const greet = () => {
     toast.add({
