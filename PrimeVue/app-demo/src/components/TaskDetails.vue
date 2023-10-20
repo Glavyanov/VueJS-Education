@@ -5,7 +5,7 @@
     </template>
     <template #title>
       {{ task.title }}
-      <Badge :value="store.count"></Badge>
+      <Badge :value="count"></Badge>
     </template>
     <template #subtitle> Card subtitle </template>
     <template #content>
@@ -37,6 +37,7 @@ import { useRouter } from "vue-router";
 import Card from "primevue/card";
 import Badge from "primevue/badge";
 import { useCounterStore } from "@/store/counterStore";
+import { storeToRefs } from "pinia";
 
 defineProps({
   task: {
@@ -46,7 +47,7 @@ defineProps({
 });
 
 const router = useRouter();
-const store = useCounterStore();
+const { count } = storeToRefs(useCounterStore());
 
 const goToHome = () => {
   router.push({ name: "home" });

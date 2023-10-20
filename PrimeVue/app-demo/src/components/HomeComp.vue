@@ -56,14 +56,15 @@
   import { usePrimeVue } from "primevue/config";
   import PanelMenu from 'primevue/panelmenu';
   import { useCounterStore } from '@/store/counterStore';
+  import { useThemeStore } from '@/store/themeStore';
+  import { storeToRefs } from "pinia";
   
   const PrimeVue = usePrimeVue();
   
   const text = ref();
-  const icon = ref("pi pi-sun");
-  const autoCom = ref("");
-  const isDark = ref(true);
   
+  const autoCom = ref("");
+  const { isDark, icon } = storeToRefs(useThemeStore());
   const toast = useToast();
   const items = ref([]);
   const dateTest = new Date("1970-01-14T14:35:14.200Z").toISOString();
@@ -85,7 +86,7 @@
       : _items;
   };
   
-  watch(isDark, () => {
+  watch(isDark , () => {
     refDate.value = new Date(refDate.value);
     console.log(refDate.value);
     refDate.value = new Date(refDate.value).toISOString();
