@@ -8,7 +8,10 @@
 <script setup>
 import PanelMenu from "primevue/panelmenu";
 import { ref } from "vue";
+import { useTaskStore } from "./store/taskStore";
 
+const store = useTaskStore();
+ 
 const panelItems = ref([
   {
     label: "File",
@@ -142,6 +145,15 @@ const panelItems = ref([
     label: "Tasks",
     icon: "pi pi-fw pi-file",
     to: "/tasks",
+    items: [
+      {
+        label: "Favourite",
+        icon: "pi pi-fw pi-file",
+        command: () => {
+          store.toggleShowAll();
+        }
+      },
+    ]
   },
 ]);
 </script>
