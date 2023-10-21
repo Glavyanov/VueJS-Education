@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 export const useCounterStore = defineStore("counter", {
   state: () => ({
     count: 3,
-    name: 'Increase',
+    name: 'Up',
     upperBoard: 9,
   }),
 

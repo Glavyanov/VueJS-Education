@@ -1,8 +1,5 @@
 <template>
     <ToastBase></ToastBase>
-    <div class="card flex justify-content-center" style="width: 250px">
-          <PanelMenu :model="panelItems" class="w-full md:w-25rem" />
-    </div>
     <div class="container">
       <span class="p-float-label p-input-filled">
         <InputText id="txt" v-model="text" />
@@ -37,7 +34,7 @@
         {{ count }}
       </span>
       <ButtonBase
-        label="Decrement"
+        label="Down"
         @click="store.decrement"
         icon="pi pi-sort-down"
         style="margin-left: 20px; height: 50px"
@@ -54,7 +51,6 @@
   import { ref, watch, computed} from "vue";
   import { useToast } from "primevue/usetoast";
   import { usePrimeVue } from "primevue/config";
-  import PanelMenu from 'primevue/panelmenu';
   import { useCounterStore } from '@/store/counterStore';
   import { useThemeStore } from '@/store/themeStore';
   import { storeToRefs } from "pinia";

@@ -23,9 +23,10 @@
         @click="goToHome"
       />
       <span style="margin-left: 25px">
-        <i class="pi pi-fw pi-trash"></i>
-        <i class="pi pi-spin pi-spinner"></i>
-        <i class="pi pi-spin pi-cog"></i>
+        <i class="pi pi-fw pi-trash" v-if="!task.isFav"></i>
+        <i class="pi pi-spin pi-spinner" v-if="!task.isFav"></i>
+        <i class="pi pi-spin pi-cog" v-if="!task.isFav"></i>
+        <i class="pi pi-spin pi-heart-fill" v-if="task.isFav"></i>
       </span>
     </template>
   </Card>

@@ -5,7 +5,18 @@ export const useTaskStore = defineStore("taskStore", {
     name: "Task Store",
     tasks: [],
     showAll: true,
+    label: "Favourite",
+    title: "All"
   }),
+
+  getters: {
+    getTitle(){
+        return this.title;
+    },
+    getLabel(){
+        return this.label;
+    }
+  },
 
   actions: {
     async getTasks() {
@@ -14,6 +25,13 @@ export const useTaskStore = defineStore("taskStore", {
     
     toggleShowAll() {
         this.showAll = !this.showAll;
+        if(this.showAll){
+            this.label = "Favourite";
+            this.title = "All";
+        } else {
+            this.label = "All";
+            this.title = "Favourite";
+        }
     },
   },
 });

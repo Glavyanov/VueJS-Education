@@ -1,17 +1,20 @@
 <template>
-  <div style="width: 250px">
+  <div style="width: 150px">
     <PanelMenu :model="panelItems" class="w-full md:w-25rem" />
   </div>
-  <RouterView />
+  <RouterView class="router-view" />
 </template>
 
 <script setup>
 import PanelMenu from "primevue/panelmenu";
 import { ref } from "vue";
 import { useTaskStore } from "./store/taskStore";
+import { useRouter } from "vue-router";
 
 const store = useTaskStore();
- 
+const label = ref(useTaskStore().label);
+const router = useRouter();
+
 const panelItems = ref([
   {
     label: "File",
@@ -143,17 +146,18 @@ const panelItems = ref([
   },
   {
     label: "Tasks",
-    icon: "pi pi-fw pi-file",
-    to: "/tasks",
+    icon: "pi pi-fw pi-check-square",
     items: [
       {
-        label: "Favourite",
+        label: label,
         icon: "pi pi-fw pi-file",
         command: () => {
           store.toggleShowAll();
-        }
+          label.value = store.getLabel;
+          router.push({ name: "tasks" });
+        },
       },
-    ]
+    ],
   },
 ]);
 </script>
@@ -164,5 +168,15 @@ const panelItems = ref([
   align-items: center;
   justify-content: center;
   min-height: 50vh;
+  margin-left: 20px;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+}
+
+.router-view {
+  flex: 2;
 }
 </style>
