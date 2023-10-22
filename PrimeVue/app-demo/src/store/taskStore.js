@@ -4,9 +4,9 @@ export const useTaskStore = defineStore("taskStore", {
   state: () => ({
     name: "Task Store",
     tasks: [],
-    showAll: true,
-    label: "Favourite",
-    title: "All"
+    showAll: false,
+    label: "All",
+    title: "Favourite"
   }),
 
   getters: {
