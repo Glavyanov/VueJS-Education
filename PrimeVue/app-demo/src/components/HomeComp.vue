@@ -1,5 +1,5 @@
 <template>
-    <ToastBase></ToastBase>
+    <ToastBase position="top-center"></ToastBase>
     <div class="container">
       <span class="p-float-label p-input-filled">
         <InputText id="txt" v-model="text" />
@@ -74,6 +74,7 @@
       severity: "success",
       summary: autoCom.value,
       detail: text.value,
+      life: "3000",
     });
   };
   
