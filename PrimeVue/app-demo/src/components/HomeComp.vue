@@ -107,4 +107,14 @@
     }
   });
   </script>
+
+<style scoped>
+.container {
+  flex: 2;
+}
+
+#app{
+  justify-content: space-between;
+}
+</style>
   
