@@ -3,7 +3,8 @@
     <default-bar />
 
     <default-view />
-    <v-navigation-drawer v-model="showDrawer" app class="indigo">
+    <default-footer />
+    <v-navigation-drawer app v-model="showDrawer" class="indigo">
       <v-btn
         rounded="circle"
         tile
@@ -14,7 +15,6 @@
         <v-icon size="small">mdi-heart</v-icon>
       </v-btn>
     </v-navigation-drawer>
-    <default-footer />
   </v-app>
 </template>
 
