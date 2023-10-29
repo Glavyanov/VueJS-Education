@@ -32,10 +32,10 @@
           rounded="circle"
           tile
           color="teal"
-          size="33"
+          size="44"
           @click="showDrawer = !showDrawer"
         >
-          <v-icon size="small">mdi-heart</v-icon>
+          <v-icon size="small">mdi-cards-playing-heart-multiple</v-icon>
         </v-btn>
       </div>
     </div>
