@@ -50,7 +50,7 @@
 
       <v-row class="d-flex  justify-center">
         <v-col cols="auto">
-          <v-btn @click="overlay = !overlay" variant="plain" size="x-large">
+          <v-btn @click="(overlay = !overlay, showDrawer = !showDrawer)" variant="plain" size="x-large">
             <v-icon icon="mdi-home"  size="x-large"/>
           </v-btn>
         </v-col>
@@ -103,6 +103,9 @@
 
 <script setup>
   import { ref, watch } from 'vue';
+  import { useAppStore } from "@/store/app";
+  import { storeToRefs } from "pinia";
+  const { showDrawer } = storeToRefs(useAppStore());
   const selectedLetters = ref([]);
   const dialog = ref(false);
   const overlay = ref(false);
@@ -111,7 +114,7 @@
     (val) =>{
       val && setTimeout(() => {
           overlay.value = false
-        }, 2000)
+        }, 1000)
     }
   )
 </script>

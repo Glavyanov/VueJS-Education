@@ -1,13 +1,13 @@
 <template>
-  <v-app-bar rounded :elevation="16" :collapse="collapse" height="100" image="@/assets/logo.svg" class="bg-grey-darken-2">
-    <v-app-bar-nav-icon @click="collapse = !collapse" class="ml-4" size="x-large"></v-app-bar-nav-icon>
+  <v-app-bar rounded :elevation="16" height="100" image="@/assets/logo.svg" class="bg-grey-darken-2">
+    <v-app-bar-nav-icon @click="showDrawer = !showDrawer" class="ml-4" size="x-large"></v-app-bar-nav-icon>
     <v-spacer></v-spacer>
     <v-app-bar-title>
         <h1 style="display: inline-block;">{{ header }}</h1>
     </v-app-bar-title>
     <v-dialog width="800" transition="dialog-top-transition">
       <template v-slot:activator="{ props}">
-        <v-btn icon v-bind="props" v-if="!collapse">
+        <v-btn icon v-bind="props">
           <v-chip
             class="ma-2"
             color="primary"
@@ -109,6 +109,10 @@
   //
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
+  import { useAppStore } from "@/store/app";
+  import { storeToRefs } from "pinia";
+
+  const { showDrawer } = storeToRefs(useAppStore());
   const header = ref("Vuetify App");
   const collapse = ref(false);
   const reveal = ref(false);
