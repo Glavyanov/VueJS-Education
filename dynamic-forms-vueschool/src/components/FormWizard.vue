@@ -27,8 +27,6 @@
           class="btn"
         >{{isLastStep ? 'Complete order': 'Next'}}</button>
       </div>
-
-      <pre><code>{{form}}</code></pre>
     </div>
     <div v-else>
       <h1 class="title">Thank you!</h1>
