@@ -6,6 +6,7 @@
           ref="currentStep"
           :is="currentStep"
           @update="processStep"
+          @updateAsyncState="updateAsyncState"
           :wizardData="form"
         >
         </component>
@@ -103,7 +104,7 @@ export default {
   },
   methods: {
     submitOrder() {
-      this.asyncState = "pending"
+      this.asyncState = "pending";
       postFormToDB(this.form).then(() => {
         console.log("%cSubmitted", "color: red; font-size: 33px");
         this.asyncState = "success";
@@ -131,6 +132,9 @@ export default {
       Object.assign(this.form, step.data);
       this.canGonext = step.valid;
     },
+    updateAsyncState(state){
+      this.asyncState = state;
+    }
   },
 };
 </script>

@@ -26,10 +26,10 @@
 import { required } from "vuelidate/lib/validators";
 export default {
   props: {
-    wizardData : {
+    wizardData: {
       type: Object,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -41,14 +41,24 @@ export default {
   },
   methods: {
     submit() {
-        this.$emit("update", {
-          data: {
-            address: this.form.address,
-            recipient: this.form.recipient
-          },
-          valid: !this.$v.$invalid
-        })
-      }
+      this.$emit("update", {
+        data: {
+          address: this.form.address,
+          recipient: this.form.recipient,
+        },
+        valid: !this.$v.$invalid,
+      });
+    },
+  },
+  // change name with watcher or ..... activated() hook
+  // watch: {
+  //   "wizardData.name"(value) {
+  //     this.form.recipient = value;
+  //   },
+  // },
+  // activated life-cycle hook will trigger when <keep-alive></keep-alive> component is activated
+  activated(){
+    this.form.recipient = this.wizardData.name;
   },
   validations: {
     form: {
