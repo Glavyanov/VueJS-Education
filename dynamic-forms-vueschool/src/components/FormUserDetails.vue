@@ -53,7 +53,7 @@ export default {
       },
       emailCheckedInDb: false,
       existingUser: false,
-      wrongPassword: false,
+      wrongPassword: false
     };
   },
   methods: {
