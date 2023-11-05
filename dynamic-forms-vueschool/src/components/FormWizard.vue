@@ -5,7 +5,6 @@
         <component
           ref="currentStep"
           :is="currentStep"
-          @update="processStep"
           @updateAsyncState="updateAsyncState"
           :wizardData="form"
         >
@@ -25,7 +24,6 @@
         </button>
         <button
           @click="nextButtonAction"
-          :disabled="!canGonext"
           class="btn"
         >{{isLastStep ? 'Complete order': 'Next'}}</button>
       </div>
@@ -65,7 +63,6 @@ export default {
   data() {
     return {
       currentStepNumber: 1,
-      canGonext: false,
       asyncState: null,
       form: {
         plan: null,
@@ -112,29 +109,28 @@ export default {
       });
     },
     nextButtonAction() {
-      if (this.isLastStep) {
-        this.submitOrder();
-      } else {
-        this.goNext();
-      }
+      this.$refs.currentStep
+        .submit()
+        .then((stepData) => {
+          Object.assign(this.form, stepData);
+
+          if (this.isLastStep) {
+            this.submitOrder();
+          } else {
+            this.goNext();
+          }
+        })
+        .catch((err) => console.log(err));
+    },
+    updateAsyncState(state) {
+      this.asyncState = state;
     },
     goBack() {
       this.currentStepNumber--;
-      this.canGonext = true;
     },
     goNext() {
       this.currentStepNumber++;
-      this.$nextTick(() => {
-        this.canGonext = !this.$refs.currentStep.$v.$invalid;
-      });
     },
-    processStep(step) {
-      Object.assign(this.form, step.data);
-      this.canGonext = step.valid;
-    },
-    updateAsyncState(state){
-      this.asyncState = state;
-    }
   },
 };
 </script>

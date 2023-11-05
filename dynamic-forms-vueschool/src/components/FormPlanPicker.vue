@@ -75,14 +75,19 @@ export default {
   methods: {
     pickPlan(plan) {
       this.selectedPlan = plan;
-
-      this.$emit("update", {
-        data: {
-          plan: this.selectedPlan
-        },
-        valid: !this.$v.$invalid
-      });
     },
+    submit(){
+      this.$v.$touch();
+      return new Promise((resolve, reject) => {
+        if(!this.$v.$invalid){
+          resolve({
+            plan: this.selectedPlan
+          })
+        } else {
+          reject('plan not selected!')
+        }
+      })
+    }
   },
 };
 </script>
