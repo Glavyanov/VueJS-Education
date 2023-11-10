@@ -6,7 +6,11 @@
           {{ column.name }}
         </div>
         <div class="list-reset">
-          <div class="task" v-for="task of column.tasks" :key="task.id">
+          <div class="task"
+           v-for="task of column.tasks"
+          :key="task.id"
+          @click="goToTask(task.id)"
+          >
             <span class="w-full flex-no-shrink font-bold">
               {{ task.name }}
             </span>
@@ -34,7 +38,12 @@ export default {
   computed: {
     ...mapState(["board"]),
     isTaskOpen() {
-      return this.$route.fullPath.includes("task")
+      return this.$route.name === 'task';
+    }
+  },
+  methods:{
+    goToTask(id){
+      this.$router.push({name: 'task', params: {id}})
     }
   }
 }

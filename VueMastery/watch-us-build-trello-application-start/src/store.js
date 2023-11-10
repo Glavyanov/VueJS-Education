@@ -15,7 +15,6 @@ export default new Vuex.Store({
   getters: {
     getTask(state){
       return (id) => {
-        debugger;
         for (const column of state.board.columns) {
           for (const task of column.tasks) {
             if(task.id === id){
