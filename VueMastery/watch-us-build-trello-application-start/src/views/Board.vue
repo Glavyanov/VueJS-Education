@@ -1,14 +1,22 @@
 <template>
   <div class="board">
     <div class="flex flex-row items-start">
-      <div class="column" v-for="column in board.columns" :key="column.name">
+      <div class="column" 
+        v-for="column, columnIndex in board.columns"
+        :key="column.name"
+        @drop="moveTask($event, column.tasks)"
+        @dragover.prevent
+        @dragenter.prevent
+      >
         <div class="flex items-center mb-2 font-bold">
           {{ column.name }}
         </div>
         <div class="list-reset">
           <div class="task"
-           v-for="task of column.tasks"
+           v-for="task, taskIndex of column.tasks"
           :key="task.id"
+          draggable
+          @dragstart="pickUpTask($event, taskIndex, columnIndex)"
           @click="goToTask(task.id)"
           >
             <span class="w-full flex-no-shrink font-bold">
@@ -21,10 +29,19 @@
               {{ task.description }}
             </p>
           </div>
+          <input 
+            type="text"
+            class="block p-2 w-full bg-transparent"
+            placeholder="+ Enter new task"
+            @keyup.enter="createTask($event, column.tasks)"
+          >
         </div>
       </div>
     </div>
-    <div class="task-bg" v-show="isTaskOpen">
+    <div class="task-bg"
+      v-if="isTaskOpen"
+      @click.self="close"
+    >
       <router-view />
     </div>
   </div>
@@ -36,7 +53,7 @@ import { mapState } from "vuex";
 
 export default {
   computed: {
-    ...mapState(["board"]),
+    ...mapState(['board']),
     isTaskOpen() {
       return this.$route.name === 'task';
     }
@@ -44,6 +61,34 @@ export default {
   methods:{
     goToTask(id){
       this.$router.push({name: 'task', params: {id}})
+    },
+    close(){
+      this.$router.push({name: 'board'})
+    },
+    createTask (e, tasks) {
+      this.$store.commit('CREATE_TASK', {
+        tasks,
+        name: e.target.value
+      })
+      e.target.value='';
+    },
+    pickUpTask (e, taskIndex, fromColumnIndex) {
+      e.dataTransfer.effectAllowed = 'move'
+      e.dataTransfer.dropEffect = 'move'
+
+      e.dataTransfer.setData('task-index', taskIndex)
+      e.dataTransfer.setData('from-column-index', fromColumnIndex)
+    },
+    moveTask (e, toTasks){
+      const fromColumIndex = e.dataTransfer.getData('from-column-index')
+      const fromTasks = this.board.columns[fromColumIndex].tasks
+      const taskIndex = e.dataTransfer.getData('task-index')
+
+      this.$store.commit('MOVE_TASK', {
+        fromTasks,
+        toTasks,
+        taskIndex
+      })
     }
   }
 }
