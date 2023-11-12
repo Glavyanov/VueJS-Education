@@ -16,19 +16,22 @@
         <div class="list-reset">
           <div class="task"
            v-for="task, taskIndex of column.tasks"
-          :key="task.id"
+          :key="taskIndex"
           draggable
           @dragstart="pickUpTask($event, taskIndex, columnIndex)"
+          @dragover.prevent
+          @dragenter.prevent
           @click="goToTask(task.id)"
+          @drop.stop="moveTaskOrColumn($event, column.tasks, columnIndex, taskIndex)"
           >
             <span class="w-full flex-no-shrink font-bold">
-              {{ task.name }}
+              {{ task && task.name }}
             </span>
             <p
-              v-if="task.description"
+              v-if="task && task.description"
               class="w-full flex-no-shrink mt-1 text-sm"
             >
-              {{ task.description }}
+              {{ task && task.description }}
             </p>
           </div>
           <input 
@@ -78,7 +81,7 @@ export default {
       e.dataTransfer.effectAllowed = 'move'
       e.dataTransfer.dropEffect = 'move'
 
-      e.dataTransfer.setData('task-index', taskIndex)
+      e.dataTransfer.setData('from-task-index', taskIndex)
       e.dataTransfer.setData('from-column-index', fromColumnIndex)
       e.dataTransfer.setData('type', 'task')
     },
@@ -89,23 +92,24 @@ export default {
       e.dataTransfer.setData('from-column-index', fromColumnIndex)
       e.dataTransfer.setData('type', 'column')
     },
-    moveTaskOrColumn (e, toTasks, toColumnIndex) {
+    moveTaskOrColumn (e, toTasks, toColumnIndex, toTaskIndex) {
       const type = e.dataTransfer.getData('type')
       if(type === 'task'){
-        this.moveTask(e, toTasks)
+        this.moveTask(e, toTasks, toTaskIndex != null ? toTaskIndex : toTasks.length)
       } else if (type === 'column'){
         this.moveColumn(e, toColumnIndex)
       }
     },
-    moveTask (e, toTasks){
+    moveTask (e, toTasks, toTaskIndex){
       const fromColumnIndex = e.dataTransfer.getData('from-column-index')
       const fromTasks = this.board.columns[fromColumnIndex].tasks
-      const taskIndex = e.dataTransfer.getData('task-index')
+      const fromTaskIndex = e.dataTransfer.getData('from-task-index')
 
       this.$store.commit('MOVE_TASK', {
         fromTasks,
         toTasks,
-        taskIndex
+        fromTaskIndex,
+        toTaskIndex
       })
     },
     moveColumn(e, toColumnIndex) {
