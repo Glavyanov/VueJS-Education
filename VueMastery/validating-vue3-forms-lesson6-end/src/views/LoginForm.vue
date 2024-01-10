@@ -3,15 +3,18 @@
     <BaseInput
       label="Email"
       type="email"
-      :error="emailError"
       :modelValue="email"
-      @change="handleChange"
+      @change="handleEmailChange"
+      @blur="handleEmailChange"
+      :error="emailError"
     />
 
     <BaseInput
       label="Password"
       type="password"
-      v-model="password"
+      :modelValue="password"
+      @change="handlePasswordChange"
+      @blur="handlePasswordChange"
       :error="passwordError"
     />
 
@@ -45,7 +48,7 @@ export default {
       },
       password: value => {
         const requiredMessage = 'This field is required'
-        if (value === undefined || value === null) return requiredMessage
+        if (value == null) return requiredMessage
         if (!String(value).length) return requiredMessage
 
         return true
@@ -56,8 +59,8 @@ export default {
       validationSchema: validations
     })
 
-    const { value: email, errorMessage: emailError, handleChange } = useField('email')
-    const { value: password, errorMessage: passwordError } = useField('password')
+    const { value: email, errorMessage: emailError, handleChange: handleEmailChange } = useField('email')
+    const { value: password, errorMessage: passwordError, handleChange: handlePasswordChange } = useField('password')
 
     return {
       onSubmit,
@@ -65,7 +68,8 @@ export default {
       emailError,
       password,
       passwordError,
-      handleChange
+      handleEmailChange,
+      handlePasswordChange
     }
   }
 }
