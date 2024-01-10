@@ -11,7 +11,7 @@
     "core-js": "^3.8.3",
     "pinia": "^2.1.6",
     "primeicons": "^6.0.1",
-    "primevue": "^3.27.0",
+    "primevue": "^3.46.0",
     "vue": "^3.3.0",
     "vue-router": "^4.2.5"
   },
@@ -37,7 +37,7 @@
       "parser": "@babel/eslint-parser"
     },
     "rules": {
-      "no-debugger":"off"
+      "no-debugger": "off"
     }
   },
   "browserslist": [
