@@ -137,12 +137,16 @@ const panelItems = ref([
   {
     label: "Home",
     icon: "pi pi-fw pi-file",
-    to: "/",
+    command: () => {
+          router.push({ name: "home" });
+    },
   },
   {
     label: "About",
     icon: "pi pi-fw pi-file",
-    to: "/about",
+    command: () => {
+          router.push({ name: "about" });
+    },
   },
   {
     label: "Tasks",
