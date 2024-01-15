@@ -114,3 +114,19 @@ function createColumn(){
     });
 }
 </script>
+<style scoped>
+    .sortable-ghost.column {
+        position: relative !important;
+    }
+
+    .sortable-ghost.column::after {
+        content: "";
+        @apply absolute top-0 bottom-0 left-0 right-0 bg-slate-300 rounded !important;
+    }
+
+    .column:focus,
+    .column:focus-visible {
+        @apply outline-gray-400 !important;
+        outline: gray auto 2px;
+    }
+</style>

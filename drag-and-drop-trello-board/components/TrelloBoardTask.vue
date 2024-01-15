@@ -20,6 +20,7 @@ const props = defineProps<{
 const emit = defineEmits<{
     (e: "delete", payload: ID): void;
 }>();
+
 const focused = ref(false);
 
 onKeyStroke("Backspace", (e) => {
