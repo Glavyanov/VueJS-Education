@@ -21,16 +21,16 @@
   <p class="counter">{{ characterCount }} /200</p>
   <ul>
     <li
-      v-for="item in reversedItems"
-      @click="togglePurchased(item)"
-      :key="item.id"
+      v-for="({purchased, highPriority, id, label})  in reversedItems"
+      @click="togglePurchased(id)"
+      :key="id"
       class="static-class"
       :class="{
-        strikeout: item.purchased,
-        priority: item.highPriority,
+        strikeout: purchased,
+        priority: highPriority,
       }"
     >
-      {{ item.label }}
+      {{ label }}
     </li>
   </ul>
   <p v-if="!items.length">Nothing to see here</p>
@@ -121,8 +121,11 @@ const doEdit = (e) => {
   newItemHighPriority.value = "";
 };
 
-const togglePurchased = (item) => {
-  item.purchased = !item.purchased;
+const togglePurchased = (id) => {
+  const item = items.value.find(i => i.id === id);
+  if(item){
+    item.purchased = !item.purchased;
+  }
 };
 </script>
 
