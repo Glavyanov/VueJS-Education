@@ -19,3 +19,9 @@ function AppViewModel() {
 
 // Activates knockout.js
 ko.applyBindings(new AppViewModel());
+
+$('body').on('click', (ev) => {
+    if($(ev.target).attr('class') === 'popover'){
+        $(ev.target).find('#closeBtn').click();
+    }
+});

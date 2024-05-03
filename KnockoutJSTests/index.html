@@ -19,23 +19,25 @@
         <label>Last name: <input data-bind="textInput: lastName" /></label>
         <button data-bind="click: addFriend">Add Friend</button>
     </div>
-    <div class="contentko">
+    <div class="contentKo">
         <h2 id="friendsTitle">Friends</h2>
         <ul role="list" data-bind="template: {name: 'friendsTemplate', foreach: friends}"></ul>
     </div>
     <script id="friendsTemplate" type="text/html">
         <li>My Friend:
             <input data-bind="value: $data.name" />
-            <button data-bind="attr: { popovertarget: $data.name() + $index }">Remove</button>
-            <div data-bind="attr: { id: $data.name() + $index,  }" popover>
-                <div id="contentPop">
-                    <h4>Are you sure you want to remove <span data-bind="ifnot: $data.name()">blank</span><span data-bind="text: $data.name"></span>?</h4>
+            <button data-bind="attr: { popovertarget: $data.name() + $index() }">Remove</button>
+            <div class="popover" data-bind="attr: { id: $data.name() + $index() }" popover>
+                <div id="popoverContent">
+                    <h4>Are you sure you want to remove 
+                        <span data-bind="ifnot: $data.name()">blank</span><span data-bind="text: $data.name"></span>?
+                    </h4>
                     <div id="popoverFooter">
-                        <button data-bind="attr: { popovertarget: $data.name() + $index, popovertargetaction: 'hide' }" type="text">
+                        <button id="closeBtn" data-bind="attr: { popovertarget: $data.name() + $index(), popovertargetaction: 'hide' }" type="button">
                             <span aria-hidden="true" >❌</span>
                             <span>Close</span>
                         </button>
-                        <button data-bind="click: remove">Remove</button>
+                        <button class="removeBtn" data-bind="click: remove" type="button">Remove</button>
                     </div>
                 </div>
             </div>

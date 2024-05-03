@@ -77,14 +77,14 @@ select {
 
 
 .containerKo,
-.contentko {
+.contentKo {
   display: flex;
   flex-direction: column;
   margin: 20px 160px;
   align-content: center;
 }
 
-.contentko {
+.contentKo {
   align-items: center;
 }
 [popover] {
@@ -98,10 +98,9 @@ select {
   opacity: 1;
 }
 
-#contentPop {
+#popoverContent {
   position: absolute;
   inset: 250px;
-  z-index: 9996;
   color: #0a0a0a;
   background-color: rgb(255, 246, 246);
   border-radius: 4px;
@@ -110,10 +109,23 @@ select {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  z-index: -1;
+  z-index: 9999;
 }
 
 #popoverFooter{
   margin-left: auto;
- padding-right: 20px;
+  padding-right: 20px;
+}
+
+.removeBtn {
+  background-color: rgba(255, 0, 0, 0.49);
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+[popover]::backdrop{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
 }
