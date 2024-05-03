@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js" integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="app.js" defer></script>
+    <title>Knockout Sample</title>
+</head>
+<body>
+    <div class="containerKo">
+        <label>First name: <strong data-bind="text: firstName"></strong></label>
+        <label>Last name: <strong data-bind="text: lastName"></strong></label>
+
+        <label>First name: <input data-bind="textInput: firstName" /></label>
+        <label>Last name: <input data-bind="textInput: lastName" /></label>
+        <button data-bind="click: addFriend">Add Friend</button>
+    </div>
+    <div class="contentko">
+        <h2 id="friendsTitle">Friends</h2>
+        <ul role="list" data-bind="template: {name: 'friendsTemplate', foreach: friends}"></ul>
+    </div>
+    <script id="friendsTemplate" type="text/html">
+        <li>My Friend:
+            <input data-bind="value: $data.name" />
+            <button data-bind="attr: { popovertarget: $data.name() + $index }">Remove</button>
+            <div data-bind="attr: { id: $data.name() + $index,  }" popover>
+                <div id="contentPop">
+                    <h4>Are you sure you want to remove <span data-bind="ifnot: $data.name()">blank</span><span data-bind="text: $data.name"></span>?</h4>
+                    <div id="popoverFooter">
+                        <button data-bind="attr: { popovertarget: $data.name() + $index, popovertargetaction: 'hide' }" type="text">
+                            <span aria-hidden="true" >❌</span>
+                            <span>Close</span>
+                        </button>
+                        <button data-bind="click: remove">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </script>
+</body>
+</html>
