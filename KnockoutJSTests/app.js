@@ -31,6 +31,9 @@ function AppViewModel() {
     for (const item of data) {
       that.ExportVariables.push(new Variable(item));
     }
+    if(data){
+        $('.select-over-select2').select2('open');
+    }
   };
 
   function Variable(obj) {
