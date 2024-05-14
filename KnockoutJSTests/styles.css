@@ -82,6 +82,7 @@ select {
   flex-direction: column;
   margin: 20px 160px;
   align-content: center;
+  gap: 12px;
 }
 
 .contentKo {
@@ -128,4 +129,12 @@ select {
   width: 100%;
   height: 100%;
   z-index: 9998;
+}
+
+select[name="ExportVariables"]{
+  width: 800px;
+}
+
+.select2-search__field {
+  width: 200px !important;
 }
