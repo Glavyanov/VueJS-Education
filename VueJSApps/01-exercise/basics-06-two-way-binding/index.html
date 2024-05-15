@@ -9,8 +9,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://www.google.com/recaptcha/api.js?render="></script>
     <script src="https://unpkg.com/vue@next" defer></script>
-    <script src="app.js" defer></script>
   </head>
   <body>
     <header>
@@ -24,6 +24,23 @@
       <input type="text" v-model="name">
       <button @click="resetInput">Reset Input</button>
       <p>Your Name: {{ name }}</p>
+
+      <form action="/" method="post" submit="onClick">
+        <button type="submit" onclick="onClick(event)" >Submit</button>
+      </form>
     </section>
+    <script>
+      function onClick(e) {
+        debugger;
+        e.preventDefault();
+        grecaptcha.ready(function() {
+          debugger;
+          grecaptcha.execute('', {action: 'submit'}).then(function(token) {
+              // Add your logic to submit to your backend server here.
+              console.log(token);
+          });
+        });
+      }
+  </script>
   </body>
 </html>
