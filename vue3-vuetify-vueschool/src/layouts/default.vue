@@ -1,12 +1,12 @@
 <template>
   <v-layout class="rounded rounded-md">
-    <v-app-bar
-      density="comfortable"
-      :elevation="10"
-      color="orange"
-    >
+    <v-app-bar density="comfortable" :elevation="10" color="orange">
       <template #prepend>
-        <v-app-bar-nav-icon v-if="mobile" @click.stop="drawer = !drawer" variant="plain"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+          v-if="mobile"
+          @click.stop="drawer = !drawer"
+          variant="plain"
+        ></v-app-bar-nav-icon>
         <v-toolbar-title>
           <router-link :to="'/'" class="text-decoration-none text-white ml-3">Code Topics</router-link>
         </v-toolbar-title>
@@ -14,7 +14,7 @@
       <template #append>
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-avatar 
+            <v-avatar
               image="https://avatars.githubusercontent.com/u/89041019?v=4"
               size="50"
               v-bind="props"
@@ -34,42 +34,39 @@
       </template>
     </v-app-bar>
 
-    <v-navigation-drawer
-      expand-on-hover
-      rail
-      v-model="drawer"
-    >
-        <v-list density="compact" nav>
-          <v-list-item
-            prepend-icon="mdi-note-multiple"
-            title="Posts"
-            :to="'posts'"
-          ></v-list-item>
-          <v-list-item
-            prepend-icon="mdi-comment-multiple-outline"
-            title="Comments"
-            :to="'comments'"
-          ></v-list-item>
-        </v-list>
+    <v-navigation-drawer expand-on-hover rail v-model="drawer">
+      <v-list density="compact" nav>
+        <v-list-item
+          prepend-icon="mdi-note-multiple"
+          title="Posts"
+          :to="'posts'"
+        ></v-list-item>
+        <v-list-item
+          prepend-icon="mdi-comment-multiple-outline"
+          title="Comments"
+          :to="'comments'"
+        ></v-list-item>
+      </v-list>
     </v-navigation-drawer>
 
-    <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
-      <router-view />
+    <v-main style="min-height: 300px">
+      <div class="text-center">
+        <router-view />
+      </div>
     </v-main>
   </v-layout>
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue';
-  import { useDisplay } from 'vuetify'
+import { ref } from "vue";
+import { useDisplay } from "vuetify";
 
-  const { mobile } = useDisplay()
-  const drawer = ref(true);
-
+const { mobile } = useDisplay();
+const drawer = ref(true);
 </script>
 
 <style>
- .rounded.rounded-md{
+.rounded.rounded-md {
   position: unset !important;
- }
+}
 </style>
