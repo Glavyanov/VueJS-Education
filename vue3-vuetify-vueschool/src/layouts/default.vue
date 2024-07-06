@@ -1,11 +1,16 @@
 <template>
   <v-layout class="rounded rounded-md">
     <v-app-bar
-      title="Application bar"
       density="comfortable"
       :elevation="10"
       color="orange"
     >
+      <template #prepend>
+        <v-app-bar-nav-icon v-if="mobile" @click.stop="drawer = !drawer" variant="plain"></v-app-bar-nav-icon>
+        <v-toolbar-title>
+          <router-link :to="'/'" class="text-decoration-none text-white ml-3">Code Topics</router-link>
+        </v-toolbar-title>
+      </template>
       <template #append>
         <v-menu>
           <template v-slot:activator="{ props }">
@@ -29,10 +34,23 @@
       </template>
     </v-app-bar>
 
-    <v-navigation-drawer>
-      <v-list>
-        <v-list-item title="Navigation drawer"></v-list-item>
-      </v-list>
+    <v-navigation-drawer
+      expand-on-hover
+      rail
+      v-model="drawer"
+    >
+        <v-list density="compact" nav>
+          <v-list-item
+            prepend-icon="mdi-note-multiple"
+            title="Posts"
+            :to="'posts'"
+          ></v-list-item>
+          <v-list-item
+            prepend-icon="mdi-comment-multiple-outline"
+            title="Comments"
+            :to="'comments'"
+          ></v-list-item>
+        </v-list>
     </v-navigation-drawer>
 
     <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
@@ -42,7 +60,12 @@
 </template>
 
 <script lang="ts" setup>
-  //
+  import { ref } from 'vue';
+  import { useDisplay } from 'vuetify'
+
+  const { mobile } = useDisplay()
+  const drawer = ref(true);
+
 </script>
 
 <style>
