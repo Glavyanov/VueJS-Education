@@ -14,7 +14,8 @@
     </v-row>
 
     <v-text-field
-      v-model="form.title"
+      :modelValue="form.title"
+      @change="form.title = $event.target.value; isUpdate = true"
       label="Title"
       validate-on="lazy"
       :rules="[asyncValidation]"
@@ -58,6 +59,7 @@ const form = ref({
   image: [],
   ...props.post,
 });
+const isUpdate = ref(false);
 
 const valid = ref(true);
 function isNotEmpty(value: string[]) {
@@ -69,7 +71,8 @@ function isRequired(value: string) {
   return "Field is required";
 }
 async function asyncValidation(value: string) {
-  if(value.length < 3) return "Title must contain at least 3 characters.";
+  if(!isUpdate.value) return true;
+  isUpdate.value = false;
   const res = await fetch(`https://httpbin.org/status/${value}`);
   if (res.ok) return true;
   return "Bad response code";
