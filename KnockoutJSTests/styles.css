@@ -101,6 +101,7 @@ select {
 
 #popoverContent {
   position: absolute;
+  height: 200px;
   inset: 250px;
   color: #0a0a0a;
   background-color: rgb(255, 246, 246);
