@@ -14,10 +14,10 @@
         {
           title: 'Post Title',
           align: 'center',
-          sortable: false,
-          key: 'title',
+          sortable: true,
+          key: 'title'
         },
-        { title: 'Author', align: 'center', key: 'author' },
+        { title: 'Author', align: 'center', key: 'author', sortable: true },
       ]"
       :items="posts"
       show-select

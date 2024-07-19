@@ -3,10 +3,20 @@
     <v-list>
         <v-list-item v-for="(pony, position) in podium" :key="pony">{{ position }}: {{ pony }}</v-list-item>
     </v-list>
+    <pre>{{ `<{v-list-item
+                v-for="(_, src, index) in images"
+                :key="src + index"
+                :value="src"
+                >
+                    <img  :src="src" />
+                </{v-list-item}>`
+                }}
+    </pre>
+    <v-spacer></v-spacer>
     <v-list>
         <v-list-item
-            v-for="(_, src) in images"
-            :key="src"
+            v-for="(_, src, index) in images"
+            :key="src + index"
             :value="src"
         >
             <img  :src="src" />
