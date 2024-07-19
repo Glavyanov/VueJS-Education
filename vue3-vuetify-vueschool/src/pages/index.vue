@@ -1,7 +1,8 @@
 <template>
-  <HelloWorld />
+    <AppHome />
+    <AppFooter />
 </template>
 
 <script lang="ts" setup>
-  //
+//
 </script>

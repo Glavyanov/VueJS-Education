@@ -15,7 +15,10 @@
 
     <v-text-field
       :modelValue="form.title"
-      @change="form.title = $event.target.value; isUpdate = true"
+      @change="
+        form.title = $event.target.value;
+        isUpdate = true;
+      "
       label="Title"
       validate-on="lazy"
       :rules="[asyncValidation]"
@@ -71,7 +74,7 @@ function isRequired(value: string) {
   return "Field is required";
 }
 async function asyncValidation(value: string) {
-  if(!isUpdate.value) return true;
+  if (!isUpdate.value) return true;
   isUpdate.value = false;
   const res = await fetch(`https://httpbin.org/status/${value}`);
   if (res.ok) return true;

@@ -1,59 +1,63 @@
 <template>
-    <div>
-      <h1>Posts</h1>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-  
-      <v-data-table
-        :headers="[
-          {
-            title: 'Post Title',
-            align: 'center',
-            sortable: false,
-            key: 'title',
-          },
-          { title: 'Author', align: 'center', key: 'author' },
-        ]"
-        :items="posts"
-        show-select
-        item-value="title"
-        v-model="selected"
-        :search="search"
-      >
-        <template v-slot:[`item.title`] ="{ item }">
-          <v-dialog fullscreen>
-            <template v-slot:activator="{ props }">
-              <button v-bind="props">{{ item.title }}</button>
-            </template>
-  
-            <template v-slot:default="{ isActive }">
-              <v-card title="Edit Post">
-                <v-card-text>
-                  <PostForm ref="postForm" :post="item" @submit="isActive.value = false" />
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-  
-                  <v-btn text="Cancel" @click="isActive.value = false"></v-btn>
-  
-                  <v-btn
-                    color="blue"
-                    variant="flat"
-                    text="Save Post"
-                    @click="postForm.submit()"
-                  ></v-btn>
-                </v-card-actions>
-              </v-card>
-            </template>
-          </v-dialog>
-        </template>
-      </v-data-table>
-    </div>
+  <div>
+    <h1>Posts</h1>
+    <v-text-field
+      v-model="search"
+      append-icon="mdi-magnify"
+      label="Search"
+      single-line
+      hide-details
+    ></v-text-field>
+
+    <v-data-table
+      :headers="[
+        {
+          title: 'Post Title',
+          align: 'center',
+          sortable: false,
+          key: 'title',
+        },
+        { title: 'Author', align: 'center', key: 'author' },
+      ]"
+      :items="posts"
+      show-select
+      item-value="title"
+      v-model="selected"
+      :search="search"
+    >
+      <template v-slot:[`item.title`]="{ item }">
+        <v-dialog fullscreen>
+          <template v-slot:activator="{ props }">
+            <button v-bind="props">{{ item.title }}</button>
+          </template>
+
+          <template v-slot:default="{ isActive }">
+            <v-card title="Edit Post">
+              <v-card-text>
+                <PostForm
+                  ref="postForm"
+                  :post="item"
+                  @submit="isActive.value = false"
+                />
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+
+                <v-btn text="Cancel" @click="isActive.value = false"></v-btn>
+
+                <v-btn
+                  color="blue"
+                  variant="flat"
+                  text="Save Post"
+                  @click="postForm.submit()"
+                ></v-btn>
+              </v-card-actions>
+            </v-card>
+          </template>
+        </v-dialog>
+      </template>
+    </v-data-table>
+  </div>
 </template>
 
 <script lang="ts" setup>
