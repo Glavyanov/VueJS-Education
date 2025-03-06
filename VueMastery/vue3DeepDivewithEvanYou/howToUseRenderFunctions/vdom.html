@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.1.1/dist/vue.global.prod.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Vue Render demo</title>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+
+<script>
+    const { h, createApp } = Vue
+
+    const Stack = {
+        render() {
+            const slot = this.$slots.default
+            ? this.$slots.default()
+            : []
+
+            return h('div', {class: 'stack'}, slot.map(child => {
+                return h('div', { class: `m-${this.$attrs.size}` }, [ child ])
+            }))
+        }
+    }
+
+    createApp({
+        components: {
+            Stack
+        },
+        template: `
+            <Stack size="2">
+                <div>Vue!0</div>
+                <Stack size="3">
+                    <div>Item Vue!1</div>
+                    <div>Item Vue!2</div>
+                    <Stack size="4">
+                        <div>Item Vue!1</div>
+                        <div>Item Vue!2</div>
+                        <Stack size="5">
+                            <div>Item Vue!1</div>
+                            <div>Item Vue!2</div>
+                        </Stack>
+                    </Stack>
+                </Stack>
+            </Stack>
+        `   
+    }).mount('#app')
+
+</script>
+</html>
